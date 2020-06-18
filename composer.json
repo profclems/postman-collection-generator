@@ -1,0 +1,19 @@
+{
+    "name": "profclems/postman-collection-generator",
+    "description": "A package that automatically generate postman collection from laravel api/web routes",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clement Sam",
+            "email": "clementsam75@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Profclems\\PostmanCollectionGenerator\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
