@@ -8,9 +8,8 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Routing\Router;
-use Ramsey\Uuid\Uuid;
 
-class PostmanCollectionGenerator extends Command
+class ExportPostmanCollection extends Command
 {
     /**
      * The name and signature of the console command.

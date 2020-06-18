@@ -11,6 +11,6 @@ class PostmanCollectionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands(PostmanCollectionGenerator::class);
+        $this->commands(ExportPostmanCollection::class);
     }
 }
