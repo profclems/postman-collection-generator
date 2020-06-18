@@ -17,7 +17,7 @@ class ExportPostmanCollection extends Command
      * @var string
      */
     protected $signature = 'postman:collection:export {name?}
-                            {--api} {--web} {--url={{base_url}}} {--port=}';
+                            {--api} {--web} {--url=} {--port=}';
 
     /**
      * The console command description.
@@ -76,12 +76,16 @@ class ExportPostmanCollection extends Command
         $filename = $this->argument('name');
         $usage_error = 'Please use --api or --web to specify the type of route file to export';
 
-        if ($this->option('api') || $this->option('web')
-            && !($this->option('api') && $this->option('web'))) {
+        if ($this->option('api') || $this->option('web')) {
+
+            if ($this->option('api') && $this->option('web')) {
+                $this->info($usage_error);
+                exit();
+            }
 
             $routeType = $this->option('api')? 'api':'web';
             $filename = date('Y_m_d_His').'_'.($filename??config('app.name') . '_postman');
-            $url = $this->option('url');
+            $url = $this->option('url')??'{{base_url}}';
             $url = $this->option('port') ? $url . ':' . $this->option('port') : $url;
 
             $routes = [
@@ -167,7 +171,7 @@ class ExportPostmanCollection extends Command
             if (!$this->_files->put($exportFile, json_encode($routes))) {
                 $this->error('Export failed');
             } else {
-                $this->info('Routes exported! Filename: ' . $exportFile);
+                $this->info('Routes exported as postman collection! Filename: ' . $exportFile);
             }
 
         } else {
