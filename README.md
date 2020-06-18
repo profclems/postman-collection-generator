@@ -25,11 +25,15 @@ To generate collection for api routes, run
 ```bash
 php artisan postman:collection:export NameForCollection --api
 ```
+This will generate a ```yyyy_mm_dd_his_NameForCollection_api.json``` in your Laravel ```storage/app``` folder.
 
 To generate collection for web routes, run
 ```bash
 php artisan postman:collection:export NameForCollection --web
 ```
+This will generate a ```yyyy_mm_dd_his_NameForCollection_web.json``` in your Laravel ```storage/app``` folder.
+
+
 Change `NameForCollection` to the name you want the collection file saved as.
 
 ## Options
