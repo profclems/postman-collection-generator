@@ -1,4 +1,4 @@
-# PostmanCollectionGenerator
+# Laravel Routes to Postman Collection Generator
 This package automatically generates postman collection from laravel api/web routes with just a single command
 
 ## Postman Schema
