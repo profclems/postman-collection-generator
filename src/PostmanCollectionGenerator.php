@@ -17,7 +17,7 @@ class PostmanCollectionGenerator extends Command
      *
      * @var string
      */
-    protected $signature = 'postman:generate {name?} {--api} {--web} {--url={{base_url}}} {--port=}';
+    protected $signature = 'postman:collection:export {name?} {--api} {--web} {--url={{base_url}}} {--port=}';
 
     /**
      * The console command description.
