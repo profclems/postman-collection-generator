@@ -8,7 +8,14 @@ Install this bundle through [Composer](https://getcomposer.org/):
 ```bash
 composer require profclems/postman-collection-generator
 ```
+Add the PostmanCollectionServiceProvider to providers in the config/app.php
 
+```php
+'providers' => [
+    ...
+    \Profclems\PostmanCollectionGenerator\PostmanCollectionServiceProvider::class,
+];
+```
 ## Usage
 
 To generate collection for api routes, run
