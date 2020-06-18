@@ -1,6 +1,9 @@
 # PostmanCollectionGenerator
 This package automatically generates postman collection from laravel api/web routes with just a single command
 
+## Postman Schema
+Supports postman collection [Schema v2.1.0](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+
 ## Installation
 
 Install this bundle through [Composer](https://getcomposer.org/):
@@ -30,6 +33,7 @@ php artisan postman:collection:export NameForCollection --web
 Change `NameForCollection` to the name you want the collection file saved as.
 
 ## Options
+By default, the url is set to ```{{base_url}}``` which is a postman variable that can be set in your postman environment.
 ```bash
 --api or --web to specify the type of route to export
 --url to specify the url for the collection. Eg. --url=localhost
