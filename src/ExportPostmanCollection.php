@@ -74,8 +74,10 @@ class ExportPostmanCollection extends Command
     public function handle() : void
     {
         $filename = $this->argument('name');
+        $usage_error = 'Please use --api or --web to specify the type of route file to export';
 
-        if ($this->option('api') || $this->option('web')) {
+        if ($this->option('api') || $this->option('web')
+            && !($this->option('api') && $this->option('web'))) {
 
             $routeType = $this->option('api')? 'api':'web';
             $filename = date('Y_m_d_His').'_'.($filename??config('app.name') . '_postman');
@@ -169,7 +171,7 @@ class ExportPostmanCollection extends Command
             }
 
         } else {
-            $this->info('Please use --api or --web to specify the type of route file to export');
+            $this->info($usage_error);
         }
     }
 
