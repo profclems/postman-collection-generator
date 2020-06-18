@@ -17,7 +17,8 @@ class PostmanCollectionGenerator extends Command
      *
      * @var string
      */
-    protected $signature = 'postman:collection:export {name?} {--api} {--web} {--url={{base_url}}} {--port=}';
+    protected $signature = 'postman:collection:export {name?}
+                            {--api} {--web} {--url={{base_url}}} {--port=}';
 
     /**
      * The console command description.
@@ -29,27 +30,33 @@ class PostmanCollectionGenerator extends Command
     /**
      * @var Filesystem
      */
-    private $files;
+    private $_files;
 
     /**
      * @var Router
      */
-    private $router;
+    private $_router;
 
     /**
      * Create a new command instance.
      *
-     * @param Router $router
-     * @param Filesystem $files
+     * @param Router     $_router
+     * @param Filesystem $_files
      */
-    public function __construct(Router $router, Filesystem $files)
+    public function __construct(Router $_router, Filesystem $_files)
     {
-        $this->files = $files;
-        $this->router = $router;
+        $this->_files = $_files;
+        $this->_router = $_router;
         parent::__construct();
     }
 
-    public function uuidv4($data = null)
+    /**
+     * @param null $data
+     *
+     * @return string
+     * @throws Exception
+     */
+    public function uuidv4($data = null) : string
     {
         $data = $data ?? random_bytes(16);
         assert(strlen($data) == 16);
@@ -86,7 +93,7 @@ class PostmanCollectionGenerator extends Command
                 ],
             ];
 
-            foreach ($this->router->getRoutes() as $route) {
+            foreach ($this->_router->getRoutes() as $route) {
                 foreach ($route->methods as $method) {
                     if ('HEAD' == $method) {
                         continue;
@@ -122,9 +129,8 @@ class PostmanCollectionGenerator extends Command
                             ],
                             'response' => [],
                         ];
-                    }
-                    //WEB ROUTES
-                    else if ($this->option('web') && "web" == $route->middleware()[0]) {
+                    } else if ($this->option('web') && "web" == $route->middleware()[0]) {
+                        //WEB ROUTES
                         $routes['item'][] = [
                             'name'     => $method . ' | ' . $route->uri(),
                             'request'  => [
@@ -156,21 +162,21 @@ class PostmanCollectionGenerator extends Command
 
             $exportFile = $filename . '_' . $routeType . '.json';
 
-            if (!$this->files->put($exportFile, json_encode($routes))) {
+            if (!$this->_files->put($exportFile, json_encode($routes))) {
                 $this->error('Export failed');
             } else {
                 $this->info('Routes exported! Filename: ' . $exportFile);
             }
-        }
 
-
-        else {
+        } else {
             $this->error('Please use --api or --web to specify the type of route file to export');
         }
     }
 
     public function getParams($route) {
-        if (empty($route->action['controller'])) {return false;}
+        if (empty($route->action['controller'])) {
+            return false;
+        }
 
         $controller = $route->action['controller'];
 
@@ -182,9 +188,13 @@ class PostmanCollectionGenerator extends Command
             $file[0] = 'app';
         }
         $file = base_path() . '/' . implode('/', $file);
-        $file = strstr($file, '@', TRUE) . '.php';
+        $file = strstr($file, '@', true) . '.php';
 
-        try {@$file_open = fopen($file, "r");} catch (Exception $e) {;}
+        try {
+            @$file_open = fopen($file, "r");
+        } catch (Exception $e) {
+
+        }
 
         /**
          * @dev Reading file and search comments
@@ -207,7 +217,9 @@ class PostmanCollectionGenerator extends Command
                 if (!empty(end($descriptions)[0])) {
                     $description      = $this->cleanString(end($descriptions)[0]);
                     $p['description'] = trim($description);
-                } else { $p['description'] = '';}
+                } else {
+                    $p['description'] = '';
+                }
 
                 //@param
                 preg_match_all("~@param(.*)~", $comment, $params, PREG_PATTERN_ORDER);
@@ -221,7 +233,9 @@ class PostmanCollectionGenerator extends Command
                         //description
                         $p['paramsArray'][$key]['description'] = implode(' ', $param);
                     }
-                } else { $p['paramsArray'] = '';}
+                } else {
+                    $p['paramsArray'] = '';
+                }
 
                 //@var
                 preg_match_all("~@var(.*)~", $comment, $vars, PREG_PATTERN_ORDER);
@@ -235,13 +249,17 @@ class PostmanCollectionGenerator extends Command
                         //description
                         $p['varsArray'][$key]['description'] = implode(' ', $var);
                     }
-                } else { $p['varsArray'] = '';}
+                } else {
+                    $p['varsArray'] = '';
+                }
 
                 //@return
                 preg_match_all("~@return(.*)~", $comment, $returns, PREG_PATTERN_ORDER);
                 if (!empty(end($returns)[0])) {
                     $p['return'] = $this->cleanString($returns[1][0]);
-                } else { $p['return'] = '';}
+                } else {
+                    $p['return'] = '';
+                }
             }
 
             unset($param, $value, $description, $c);
@@ -262,7 +280,9 @@ class PostmanCollectionGenerator extends Command
         $string = str_replace('*', '', $string); // Replaces
         $string = str_replace('#', '', $string); // Replaces
         $string = str_replace('  ', '', $string); // Replaces
-        if (substr($string, -1) == '@') {$string = substr_replace($string, "", -1);} // Removes last @
+        if (substr($string, -1) == '@') {
+            $string = substr_replace($string, "", -1);
+        } // Removes last @
         $string = preg_replace('/[\n\t*]/', '', $string); // Removes special chars.
         return trim($string);
     }
