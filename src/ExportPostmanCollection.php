@@ -75,10 +75,10 @@ class ExportPostmanCollection extends Command
     {
         $filename = $this->argument('name');
 
-        if ($this->option('api') || $this->option('api')) {
+        if ($this->option('api') || $this->option('web')) {
 
             $routeType = $this->option('api')? 'api':'web';
-            $filename = $filename??config('app.name') . '_postman';
+            $filename = date('Y_m_d_His').'_'.($filename??config('app.name') . '_postman');
             $url = $this->option('url');
             $url = $this->option('port') ? $url . ':' . $this->option('port') : $url;
 
@@ -100,6 +100,7 @@ class ExportPostmanCollection extends Command
 
                     //GETTING @PARAMs @VARs @DESCRIPTIONs from PhpDoc comments
                     $p = $this->getParams($route);
+                    //dd($p);
 
                     //API ROUTES
                     if ($this->option('api') && "api" == $route->middleware()[0]) {
@@ -112,7 +113,7 @@ class ExportPostmanCollection extends Command
                                     [
                                         'key'         => 'Content-Type',
                                         'value'       => 'application/json',
-                                        'description' => $p['description'],
+                                        'description' => $p['description']??null,
                                     ],
                                 ],
                                 'body'        => [
@@ -122,9 +123,9 @@ class ExportPostmanCollection extends Command
                                 'url'         => [
                                     'raw'   => $url . '/' . $route->uri(),
                                     'host'  => $url . '/' . $route->uri(),
-                                    'query' => $p['paramsArray'],
+                                    'query' => $p['paramsArray']??null,
                                 ],
-                                'description' => $p['description'],
+                                'description' => $p['description']??null,
                             ],
                             'response' => [],
                         ];
@@ -151,7 +152,7 @@ class ExportPostmanCollection extends Command
                                     'mode' => 'raw',
                                     'raw'  => '{\n    \n}',
                                 ],
-                                'description' => $p['description'],
+                                'description' => $p['description']??null,
                             ],
                             'response' => [],
                         ];
@@ -168,7 +169,7 @@ class ExportPostmanCollection extends Command
             }
 
         } else {
-            $this->error('Please use --api or --web to specify the type of route file to export');
+            $this->info('Please use --api or --web to specify the type of route file to export');
         }
     }
 
