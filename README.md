@@ -1,6 +1,9 @@
 # Laravel Routes to Postman Collection Generator
 This package automatically generates postman collection from laravel api/web routes with just a single command
 
+## Awards
+[![PHP Classes Innovative Award Nominee](https://www.phpclasses.org/award/innovation/nominee.gif "PHP Classes Innovative Award June 2020 Nominee")](https://www.phpclasses.org/package/11687-PHP-Generate-routes-for-an-API-or-Web-applications.html)
+
 ## Postman Schema
 Supports postman collection [Schema v2.1.0](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
 
