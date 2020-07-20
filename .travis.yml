@@ -1,0 +1,11 @@
+language: php
+
+php:
+  - '7.4'
+
+before_script:
+  - composer install
+
+script:
+  - php ./vendor/bin/phpunit Tests
+  #- $COMPOSER_BIN_DIR/phpcs --standard=PSR2 --extensions=php src
