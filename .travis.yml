@@ -7,6 +7,6 @@ before_script:
   - composer install
 
 script:
-  #- echo "Run Scripts"
+  - echo "Run Scripts"
   #- php ./vendor/bin/phpunit Tests
   #- $COMPOSER_BIN_DIR/phpcs --standard=PSR2 --extensions=php src
