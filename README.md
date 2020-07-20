@@ -3,7 +3,7 @@
 [![Total Downloads](https://poser.pugx.org/profclems/postman-collection-generator/downloads)](//packagist.org/packages/profclems/postman-collection-generator) 
 [![Latest Unstable Version](https://poser.pugx.org/profclems/postman-collection-generator/v/unstable)](//packagist.org/packages/profclems/postman-collection-generator) 
 [![License](https://poser.pugx.org/profclems/postman-collection-generator/license)](https://github.com/profclems/postman-collection-generator/blob/master/LICENSE)
-## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/profclems/postman-collection-generator/issues)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/profclems/postman-collection-generator/issues)
 
 [![PHP Classes Innovative Award Nominee](https://www.phpclasses.org/award/innovation/nominee.gif "PHP Classes Innovative Award June 2020 Nominee")](https://www.phpclasses.org/package/11687-PHP-Generate-routes-for-an-API-or-Web-applications.html)
 # About
