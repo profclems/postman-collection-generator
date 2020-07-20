@@ -2,7 +2,7 @@
 [![Latest Stable Version](https://poser.pugx.org/profclems/postman-collection-generator/v)](//packagist.org/packages/profclems/postman-collection-generator) 
 [![Total Downloads](https://poser.pugx.org/profclems/postman-collection-generator/downloads)](//packagist.org/packages/profclems/postman-collection-generator) 
 [![Latest Unstable Version](https://poser.pugx.org/profclems/postman-collection-generator/v/unstable)](//packagist.org/packages/profclems/postman-collection-generator) 
-[![License](https://poser.pugx.org/profclems/postman-collection-generator/license)](//packagist.org/packages/profclems/postman-collection-generator)
+[![License](https://poser.pugx.org/profclems/postman-collection-generator/license)](https://github.com/profclems/postman-collection-generator/blob/master/LICENSE)
 # Laravel Routes to Postman Collection Generator
 This package automatically generates postman collection from laravel api/web routes with just a single command
 
