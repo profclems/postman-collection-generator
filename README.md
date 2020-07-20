@@ -1,4 +1,8 @@
 [![Build Status](https://travis-ci.com/profclems/postman-collection-generator.svg?branch=master)](https://travis-ci.com/profclems/postman-collection-generator)
+[![Latest Stable Version](https://poser.pugx.org/phpunit/phpunit/v)](//packagist.org/packages/phpunit/phpunit) 
+[![Total Downloads](https://poser.pugx.org/phpunit/phpunit/downloads)](//packagist.org/packages/phpunit/phpunit) 
+[![Latest Unstable Version](https://poser.pugx.org/phpunit/phpunit/v/unstable)](//packagist.org/packages/phpunit/phpunit) 
+[![License](https://poser.pugx.org/phpunit/phpunit/license)](//packagist.org/packages/phpunit/phpunit)
 # Laravel Routes to Postman Collection Generator
 This package automatically generates postman collection from laravel api/web routes with just a single command
 
