@@ -5,7 +5,6 @@
 [![License](https://poser.pugx.org/profclems/postman-collection-generator/license)](https://github.com/profclems/postman-collection-generator/blob/master/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/profclems/postman-collection-generator/issues)
 
-[![PHP Classes Innovative Award Nominee](https://www.phpclasses.org/award/innovation/nominee.gif "PHP Classes Innovative Award June 2020 Nominee")](https://www.phpclasses.org/package/11687-PHP-Generate-routes-for-an-API-or-Web-applications.html)
 # About
 This package automatically generates postman collection from laravel api/web routes with just a single command
 
@@ -57,3 +56,6 @@ By default, the url is set to ```{{base_url}}``` which is a postman variable tha
 
 ## Contributing
 Thank you for considering contributing to the this package! Feel free to submit a PR
+
+## Awards / Nominations
+[![PHP Classes Innovative Award Nominee](https://www.phpclasses.org/award/innovation/nominee.gif "PHP Classes Innovative Award June 2020 Nominee")](https://www.phpclasses.org/package/11687-PHP-Generate-routes-for-an-API-or-Web-applications.html)
