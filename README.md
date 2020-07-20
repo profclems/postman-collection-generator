@@ -3,6 +3,7 @@
 [![Total Downloads](https://poser.pugx.org/profclems/postman-collection-generator/downloads)](//packagist.org/packages/profclems/postman-collection-generator) 
 [![Latest Unstable Version](https://poser.pugx.org/profclems/postman-collection-generator/v/unstable)](//packagist.org/packages/profclems/postman-collection-generator) 
 [![License](https://poser.pugx.org/profclems/postman-collection-generator/license)](https://github.com/profclems/postman-collection-generator/blob/master/LICENSE)
+[![PHP Classes Innovative Award Nominee](https://www.phpclasses.org/award/innovation/nominee.gif "PHP Classes Innovative Award June 2020 Nominee")](https://www.phpclasses.org/package/11687-PHP-Generate-routes-for-an-API-or-Web-applications.html)
 # Laravel Routes to Postman Collection Generator
 This package automatically generates postman collection from laravel api/web routes with just a single command
 
@@ -48,6 +49,3 @@ By default, the url is set to ```{{base_url}}``` which is a postman variable tha
 --url to specify the url for the collection. Eg. --url=localhost
 --port to specify the port. Eg --port=8000
 ```
-
-## Awards & Nominations
-[![PHP Classes Innovative Award Nominee](https://www.phpclasses.org/award/innovation/nominee.gif "PHP Classes Innovative Award June 2020 Nominee")](https://www.phpclasses.org/package/11687-PHP-Generate-routes-for-an-API-or-Web-applications.html)
