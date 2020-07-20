@@ -5,7 +5,7 @@
 [![License](https://poser.pugx.org/profclems/postman-collection-generator/license)](https://github.com/profclems/postman-collection-generator/blob/master/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/profclems/postman-collection-generator/issues)
 
-# About
+## About
 This package automatically generates postman collection from laravel api/web routes with just a single command
 
 ## Postman Schema
