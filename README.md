@@ -59,3 +59,8 @@ Thank you for considering contributing to the this package! Feel free to submit 
 
 ## Awards / Nominations
 [![PHP Classes Innovative Award Nominee](https://www.phpclasses.org/award/innovation/nominee.gif "PHP Classes Innovative Award June 2020 Nominee")](https://www.phpclasses.org/package/11687-PHP-Generate-routes-for-an-API-or-Web-applications.html)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator?ref=badge_shield)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator?ref=badge_large)
