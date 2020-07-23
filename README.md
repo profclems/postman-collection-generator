@@ -4,6 +4,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/profclems/postman-collection-generator/v/unstable)](//packagist.org/packages/profclems/postman-collection-generator) 
 [![License](https://poser.pugx.org/profclems/postman-collection-generator/license)](https://github.com/profclems/postman-collection-generator/blob/master/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/profclems/postman-collection-generator/issues)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator?ref=badge_shield)
 
 ## About
 This package automatically generates postman collection from laravel api/web routes with just a single command
@@ -59,8 +60,6 @@ Thank you for considering contributing to the this package! Feel free to submit 
 
 ## Awards / Nominations
 [![PHP Classes Innovative Award Nominee](https://www.phpclasses.org/award/innovation/nominee.gif "PHP Classes Innovative Award June 2020 Nominee")](https://www.phpclasses.org/package/11687-PHP-Generate-routes-for-an-API-or-Web-applications.html)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator?ref=badge_shield)
-
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fprofclems%2Fpostman-collection-generator?ref=badge_large)
