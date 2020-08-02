@@ -30,13 +30,13 @@ Add the PostmanCollectionServiceProvider to providers in the config/app.php
 ## Usage
 
 To generate collection for api routes, run
-```bash
+```sh
 php artisan postman:collection:export NameForCollection --api
 ```
 This will generate a ```yyyy_mm_dd_his_NameForCollection_api.json``` in your Laravel ```storage/app``` folder.
 
 To generate collection for web routes, run
-```bash
+```sh
 php artisan postman:collection:export NameForCollection --web
 ```
 This will generate a ```yyyy_mm_dd_his_NameForCollection_web.json``` in your Laravel ```storage/app``` folder.
