@@ -18,5 +18,12 @@
     "require": {
         "php": ">=7",
         "ext-json": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Profclems\\PostmanCollectionGenerator\\PostmanCollectionServiceProvider"
+            ]
+        }
     }
 }
