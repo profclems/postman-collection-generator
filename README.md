@@ -19,7 +19,9 @@ Install this bundle through [Composer](https://getcomposer.org/):
 ```bash
 composer require profclems/postman-collection-generator
 ```
-Add the PostmanCollectionServiceProvider to providers in the config/app.php
+Supports Auto-discovery for Laravel 5.5+
+
+For older versions add the PostmanCollectionServiceProvider to providers in the config/app.php
 
 ```php
 'providers' => [
