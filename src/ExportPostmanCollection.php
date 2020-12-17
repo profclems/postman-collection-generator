@@ -107,6 +107,10 @@ class ExportPostmanCollection extends Command
                     //GETTING @PARAMs @VARs @DESCRIPTIONs from PhpDoc comments
                     $p = $this->getParams($route);
                     //dd($p);
+                    
+                    if(empty($route->middleware()) {
+                        continue;
+                    }
 
                     //API ROUTES
                     if ($this->option('api') && "api" == $route->middleware()[0]) {
