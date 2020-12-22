@@ -108,7 +108,7 @@ class ExportPostmanCollection extends Command
                     $p = $this->getParams($route);
                     //dd($p);
                     
-                    if(empty($route->middleware()) {
+                    if(empty($route->middleware())) {
                         continue;
                     }
 
