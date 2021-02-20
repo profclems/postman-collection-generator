@@ -107,15 +107,16 @@ class ExportPostmanCollection extends Command
                     //GETTING @PARAMs @VARs @DESCRIPTIONs from PhpDoc comments
                     $p = $this->getParams($route);
                     //dd($p);
-                    
+
                     if(empty($route->middleware())) {
                         continue;
                     }
 
                     //API ROUTES
                     if ($this->option('api') && "api" == $route->middleware()[0]) {
+                        $data = $this->processPathParams($route);
                         $routes['item'][] = [
-                            'name'     => $method . ' | ' . $route->uri(),
+                            'name'     => $method . ' | ' . $data['url'],
                             'request'  => [
                                 'auth'        => '',
                                 'method'      => strtoupper($method),
@@ -131,8 +132,9 @@ class ExportPostmanCollection extends Command
                                     'raw'  => '{\n    \n}',
                                 ],
                                 'url'         => [
-                                    'raw'   => $url . '/' . $route->uri(),
-                                    'host'  => $url . '/' . $route->uri(),
+                                    'raw'   => $url . '/' . $data['url'],
+                                    'host'  => $url . '/' . $data['url'],
+                                    'variable' => $data['variables'],
                                     'query' => $p['paramsArray']??null,
                                 ],
                                 'description' => $p['description']??null,
@@ -141,15 +143,10 @@ class ExportPostmanCollection extends Command
                         ];
                     } else if ($this->option('web') && "web" == $route->middleware()[0]) {
                         //WEB ROUTES
+                        $data = $this->processPathParams($route);
                         $routes['item'][] = [
-                            'name'     => $method . ' | ' . $route->uri(),
+                            'name'     => $method . ' | ' . $data['url'],
                             'request'  => [
-                                'url'         => $url . '/' . $route->uri(),
-                                'params'      => [
-                                    'key'         => '',
-                                    'value'       => '',
-                                    'description' => '',
-                                ],
                                 'method'      => strtoupper($method),
                                 'header'      => [
                                     [
@@ -161,6 +158,16 @@ class ExportPostmanCollection extends Command
                                 'body'        => [
                                     'mode' => 'raw',
                                     'raw'  => '{\n    \n}',
+                                ],
+                                'url'         => [
+                                    'raw'   => $url . '/' . $data['url'],
+                                    'host'  => $url . '/' . $data['url'],
+                                    'variable' => $data['variables'],
+                                ],
+                                'params'      => [
+                                    'key'         => '',
+                                    'value'       => '',
+                                    'description' => '',
                                 ],
                                 'description' => $p['description']??null,
                             ],
@@ -297,4 +304,26 @@ class ExportPostmanCollection extends Command
         return trim($string);
     }
 
+    /**
+     * @param $route
+     * @return array
+     */
+    public function processPathParams($route)
+    {
+        $matches = [];
+        $variables = [];
+        preg_match_all('/{(?>([^{}?]+)(\??))}/i', $route->uri(), $matches, PREG_SET_ORDER);
+        $clean_url = preg_replace('/{([^{}?]+)\??}/i', ":$1", $route->uri());
+        foreach ($matches as $match) {
+            $variables[] = [
+                'key' => $match[1],
+                'description' => $match[2] === '?' ? '(Optional)' : '(Required)',
+            ];
+        }
+
+        return [
+            'url' => $clean_url,
+            'variables' => $variables
+        ];
+    }
 }
