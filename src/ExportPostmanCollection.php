@@ -116,7 +116,7 @@ class ExportPostmanCollection extends Command
                     if ($this->option('api') && "api" == $route->middleware()[0]) {
                         $data = $this->processPathParams($route);
                         $routes['item'][] = [
-                            'name'     => $method . ' | ' . $data['url'],
+                            'name'     => $method . ' | ' . $route->uri(),
                             'request'  => [
                                 'auth'        => '',
                                 'method'      => strtoupper($method),
@@ -145,7 +145,7 @@ class ExportPostmanCollection extends Command
                         //WEB ROUTES
                         $data = $this->processPathParams($route);
                         $routes['item'][] = [
-                            'name'     => $method . ' | ' . $data['url'],
+                            'name'     => $method . ' | ' . $route->uri(),
                             'request'  => [
                                 'method'      => strtoupper($method),
                                 'header'      => [
