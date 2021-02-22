@@ -17,7 +17,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-mbstring": "*"
     },
     "extra": {
         "laravel": {
