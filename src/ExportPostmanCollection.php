@@ -70,6 +70,7 @@ class ExportPostmanCollection extends Command
      * Execute the console command.
      *
      * @return mixed
+     * @throws Exception
      */
     public function handle() : void
     {
@@ -190,6 +191,10 @@ class ExportPostmanCollection extends Command
         }
     }
 
+    /**
+     * @param $route
+     * @return array|false
+     */
     public function getParams($route) {
         if (empty($route->action['controller'])) {
             return false;
@@ -293,7 +298,12 @@ class ExportPostmanCollection extends Command
         return $p;
     }
 
-    public function cleanString($string) {
+    /**
+     * @param $string
+     * @return string
+     */
+    public function cleanString($string): string
+    {
         $string = str_replace('*', '', $string); // Replaces
         $string = str_replace('#', '', $string); // Replaces
         $string = str_replace('  ', '', $string); // Replaces
@@ -308,7 +318,7 @@ class ExportPostmanCollection extends Command
      * @param $route
      * @return array
      */
-    public function processPathParams($route)
+    public function processPathParams($route): array
     {
         $matches = [];
         $variables = [];
