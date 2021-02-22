@@ -70,6 +70,7 @@ class ExportPostmanCollection extends Command
      * Execute the console command.
      *
      * @return mixed
+     * @throws Exception
      */
     public function handle() : void
     {
@@ -107,13 +108,14 @@ class ExportPostmanCollection extends Command
                     //GETTING @PARAMs @VARs @DESCRIPTIONs from PhpDoc comments
                     $p = $this->getParams($route);
                     //dd($p);
-                    
+
                     if(empty($route->middleware())) {
                         continue;
                     }
 
                     //API ROUTES
                     if ($this->option('api') && "api" == $route->middleware()[0]) {
+                        $data = $this->processPathParams($route);
                         $routes['item'][] = [
                             'name'     => $method . ' | ' . $route->uri(),
                             'request'  => [
@@ -131,8 +133,9 @@ class ExportPostmanCollection extends Command
                                     'raw'  => '{\n    \n}',
                                 ],
                                 'url'         => [
-                                    'raw'   => $url . '/' . $route->uri(),
-                                    'host'  => $url . '/' . $route->uri(),
+                                    'raw'   => $url . '/' . $data['url'],
+                                    'host'  => $url . '/' . $data['url'],
+                                    'variable' => $data['variables'],
                                     'query' => $p['paramsArray']??null,
                                 ],
                                 'description' => $p['description']??null,
@@ -141,15 +144,10 @@ class ExportPostmanCollection extends Command
                         ];
                     } else if ($this->option('web') && "web" == $route->middleware()[0]) {
                         //WEB ROUTES
+                        $data = $this->processPathParams($route);
                         $routes['item'][] = [
                             'name'     => $method . ' | ' . $route->uri(),
                             'request'  => [
-                                'url'         => $url . '/' . $route->uri(),
-                                'params'      => [
-                                    'key'         => '',
-                                    'value'       => '',
-                                    'description' => '',
-                                ],
                                 'method'      => strtoupper($method),
                                 'header'      => [
                                     [
@@ -161,6 +159,16 @@ class ExportPostmanCollection extends Command
                                 'body'        => [
                                     'mode' => 'raw',
                                     'raw'  => '{\n    \n}',
+                                ],
+                                'url'         => [
+                                    'raw'   => $url . '/' . $data['url'],
+                                    'host'  => $url . '/' . $data['url'],
+                                    'variable' => $data['variables'],
+                                ],
+                                'params'      => [
+                                    'key'         => '',
+                                    'value'       => '',
+                                    'description' => '',
                                 ],
                                 'description' => $p['description']??null,
                             ],
@@ -183,6 +191,10 @@ class ExportPostmanCollection extends Command
         }
     }
 
+    /**
+     * @param $route
+     * @return array|false
+     */
     public function getParams($route) {
         if (empty($route->action['controller'])) {
             return false;
@@ -286,7 +298,12 @@ class ExportPostmanCollection extends Command
         return $p;
     }
 
-    public function cleanString($string) {
+    /**
+     * @param $string
+     * @return string
+     */
+    public function cleanString($string): string
+    {
         $string = str_replace('*', '', $string); // Replaces
         $string = str_replace('#', '', $string); // Replaces
         $string = str_replace('  ', '', $string); // Replaces
@@ -297,4 +314,27 @@ class ExportPostmanCollection extends Command
         return trim($string);
     }
 
+    /**
+     * @param $route
+     * @return array
+     */
+    public function processPathParams($route): array
+    {
+        $matches = [];
+        $variables = [];
+        $regex = '/{([^{}:?]+):?[^{}:?]*(\??)}/';
+        preg_match_all($regex, $route->uri(), $matches, PREG_SET_ORDER);
+        $clean_url = preg_replace($regex, ":$1", $route->uri());
+        foreach ($matches as $match) {
+            $variables[] = [
+                'key' => $match[1],
+                'description' => $match[2] === '?' ? '(Optional)' : '(Required)',
+            ];
+        }
+
+        return [
+            'url' => $clean_url,
+            'variables' => $variables
+        ];
+    }
 }
