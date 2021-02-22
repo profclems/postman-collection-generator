@@ -312,8 +312,9 @@ class ExportPostmanCollection extends Command
     {
         $matches = [];
         $variables = [];
-        preg_match_all('/{(?>([^{}?]+)(\??))}/i', $route->uri(), $matches, PREG_SET_ORDER);
-        $clean_url = preg_replace('/{([^{}?]+)\??}/i', ":$1", $route->uri());
+        $regex = '/{([^{}:?]+):?[^{}:?]*(\??)}/';
+        preg_match_all($regex, $route->uri(), $matches, PREG_SET_ORDER);
+        $clean_url = preg_replace($regex, ":$1", $route->uri());
         foreach ($matches as $match) {
             $variables[] = [
                 'key' => $match[1],
